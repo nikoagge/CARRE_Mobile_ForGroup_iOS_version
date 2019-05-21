@@ -27,7 +27,7 @@ class PersonalHealthRecordsListController: UIViewController {
     
     var helpObservableName = String()
     var helpObservableValue = String()
-    var helpDateAndTimeInsertionValue = String()
+    var helpDateAndTimeInsertionValue = Date()
     
     var personalHealthRecord: Table?
     

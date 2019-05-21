@@ -178,9 +178,10 @@ class NewPersonalHealthRecordController: UIViewController {
             giveValuesToAllTheFieldsAlert()
         } else {
             
+            let date = getDateFromDateTextField()
             if NewPersonalHealthRecordController.shared.newRecord {
                 
-                CarreDatabaseService.shared.insertNewPersonalHealthRecord(forObservableName: observableNameLabel.text!, forObservableValue: valueForObservableTextField.text!, forDateAndTime: dateAndTimeTextField.text!)
+                CarreDatabaseService.shared.insertNewPersonalHealthRecord(forObservableName: observableNameLabel.text!, forObservableValue: valueForObservableTextField.text!, forDateAndTime: date)
                 //CarreDatabaseService.shared.printRiskElementId(forObservableName: observableNameLabel.text!)
                 actionsAfterInsertOrUpdatePersonalHealthRecord()
             }
@@ -188,7 +189,7 @@ class NewPersonalHealthRecordController: UIViewController {
             if NewPersonalHealthRecordController.shared.updateRecord {
                
                 guard let personalHealthRecordForUpdate = PersonalHealthRecordsListController.shared.personalHealthRecord else { return }
-                CarreDatabaseService.shared.updatePersonalHealthRecord(forPersonalHealthRecord: personalHealthRecordForUpdate, forObservableName: observableNameLabel.text!, forObservableValue: valueForObservableTextField.text!, forDateAndTimeValueInsertion: dateAndTimeTextField.text!)
+                CarreDatabaseService.shared.updatePersonalHealthRecord(forPersonalHealthRecord: personalHealthRecordForUpdate, forObservableName: observableNameLabel.text!, forObservableValue: valueForObservableTextField.text!, forDateAndTimeValueInsertion: date)
                 
                 actionsAfterInsertOrUpdatePersonalHealthRecord()
             }
@@ -214,5 +215,16 @@ class NewPersonalHealthRecordController: UIViewController {
             NotificationCenter.default.post(name: self.reloadTableViewNotification, object: nil)
             NotificationCenter.default.post(name: self.hasNewPersonalHealthRecordViewControllerAppearedNotification, object: nil)
         }
+    }
+    
+    
+    func getDateFromDateTextField() -> Date {
+        
+        var returnedDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy h:mm a"
+        returnedDate = dateFormatter.date(from: dateAndTimeTextField.text!)!
+        
+        return returnedDate
     }
 }

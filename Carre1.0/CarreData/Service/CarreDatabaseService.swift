@@ -60,7 +60,7 @@ class CarreDatabaseService {
     let personalHealthRecordsTableId = Expression<Int>("personalHealthRecordsTableId")
     let personalHealthRecordObservableNameColumn = Expression<String>("personalHealthRecordObservableName")
     let personalHealthRecordObservableValueColumn = Expression<String>("personalHealthRecordObservableValue")
-    let personalHealthRecordDateAndTimeValueInsertionColumn = Expression<String>("personalHealthRecordDateAndTimeValueInsertion")
+    let personalHealthRecordDateAndTimeValueInsertionColumn = Expression<Date>("personalHealthRecordDateAndTimeValueInsertion")
     let personalHealthRecordObservableIdValueColumn = Expression<String>("personalHealthRecordObservableId")
     let personalHealthRecordRiskElementIdColumn = Expression<String>("personalHealthRecordRiskElementId")
     
@@ -429,7 +429,7 @@ class CarreDatabaseService {
     }
     
     
-    func insertNewPersonalHealthRecord(forObservableName observableName: String, forObservableValue observableValue: String, forDateAndTime dateAndTime: String) {
+    func insertNewPersonalHealthRecord(forObservableName observableName: String, forObservableValue observableValue: String, forDateAndTime dateAndTime: Date) {
         
         
         if !checkIfPersonalHealthRecordsTableExist() {
@@ -449,15 +449,15 @@ class CarreDatabaseService {
     }
     
     
-    func getAllPersonalHealthRecords() -> [[String: String]] {
+    func getAllPersonalHealthRecords() -> [[String: Any]] {
         
-        var arrayOfDictionaries = [[String: String]]()
+        var arrayOfDictionaries = [[String: Any]]()
         
         do {
             
             for selectAllColumnsQuery in try self.databaseConnection.prepare(personalHealthRecordsTable.select(*)) {
                 
-                let helpDict = ["personalHealthRecordObservableName": selectAllColumnsQuery[personalHealthRecordObservableNameColumn], "personalHealthRecordObservableValue": selectAllColumnsQuery[personalHealthRecordObservableValueColumn], "personalHealthRecordDateAndTimeValueInsertion": selectAllColumnsQuery[personalHealthRecordDateAndTimeValueInsertionColumn], "personalHealthRecordObservableIdValue": selectAllColumnsQuery[personalHealthRecordObservableIdValueColumn], "personalHealthRecordRiskElementId": selectAllColumnsQuery[personalHealthRecordRiskElementIdColumn]]
+                let helpDict = ["personalHealthRecordObservableName": selectAllColumnsQuery[personalHealthRecordObservableNameColumn], "personalHealthRecordObservableValue": selectAllColumnsQuery[personalHealthRecordObservableValueColumn], "personalHealthRecordDateAndTimeValueInsertion": selectAllColumnsQuery[personalHealthRecordDateAndTimeValueInsertionColumn], "personalHealthRecordObservableIdValue": selectAllColumnsQuery[personalHealthRecordObservableIdValueColumn], "personalHealthRecordRiskElementId": selectAllColumnsQuery[personalHealthRecordRiskElementIdColumn]] as [String : Any]
                 
                 arrayOfDictionaries.append(helpDict)
             }
@@ -510,7 +510,7 @@ class CarreDatabaseService {
     }
     
     
-    func getPersonalHealthRecord(forObservableName observableName: String, forObservableValue observableValue: String, forDateAndTimeValueInsertion dateAndTimeValueInsertion: String) -> Table {
+    func getPersonalHealthRecord(forObservableName observableName: String, forObservableValue observableValue: String, forDateAndTimeValueInsertion dateAndTimeValueInsertion: Date) -> Table {
         
         let personalHealthRecord = personalHealthRecordsTable.filter(personalHealthRecordObservableNameColumn == observableName && personalHealthRecordObservableValueColumn == observableValue && personalHealthRecordDateAndTimeValueInsertionColumn == dateAndTimeValueInsertion)
         
@@ -518,7 +518,7 @@ class CarreDatabaseService {
     }
     
     
-    func updatePersonalHealthRecord(forPersonalHealthRecord personalHealthRecord: Table, forObservableName observableName: String, forObservableValue observableValue: String, forDateAndTimeValueInsertion dateAndTimeValueInsertion: String) {
+    func updatePersonalHealthRecord(forPersonalHealthRecord personalHealthRecord: Table, forObservableName observableName: String, forObservableValue observableValue: String, forDateAndTimeValueInsertion dateAndTimeValueInsertion: Date) {
         
         let updatePersonalHealthRecordQuery = personalHealthRecord.update(personalHealthRecordObservableNameColumn <- observableName, personalHealthRecordObservableValueColumn <- observableValue, personalHealthRecordDateAndTimeValueInsertionColumn <- dateAndTimeValueInsertion, personalHealthRecordObservableIdValueColumn <- getObservableValueId(forObservableName: observableName), personalHealthRecordRiskElementIdColumn <- getRiskElementId(forObservableName: observableName))
         
