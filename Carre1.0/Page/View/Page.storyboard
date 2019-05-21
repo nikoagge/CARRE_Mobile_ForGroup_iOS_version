@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6f3-6W-vlZ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+    </dependencies>
+    <scenes>
+        <!--Page Controller-->
+        <scene sceneID="2hv-Vy-1Wh">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6f3-6W-vlZ" customClass="PageController" customModule="Carre1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="O5m-bG-JAs" kind="presentation" identifier="segueToPersonalHealthRecords" id="RxA-sN-HQU"/>
+                    </connections>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xR1-dq-Rtg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-153" y="-195"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="sOO-Sk-5Be">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="HomeSBRID" storyboardName="Home" id="QlK-g5-dkn" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vHO-D0-gds" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="350" y="-188"/>
+        </scene>
+        <!--PersonalHealthRecordsList-->
+        <scene sceneID="Uma-oE-v8r">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="PersonalHealthRecordsListSBRID" storyboardName="PersonalHealthRecordsList" id="O5m-bG-JAs" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sdf-Qs-jss" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="351" y="-147"/>
+        </scene>
+        <!--RiskFactorsBarChart-->
+        <scene sceneID="eaN-Wh-HNJ">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="RiskFactorsBarChartSBRID" storyboardName="RiskFactorsBarChart" id="zAM-r4-gyk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Guw-ab-WsW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="350" y="-99"/>
+        </scene>
+    </scenes>
+</document>

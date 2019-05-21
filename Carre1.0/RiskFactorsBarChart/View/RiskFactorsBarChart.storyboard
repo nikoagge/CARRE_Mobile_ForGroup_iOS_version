@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qwo-bp-4nK">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Risk Factors Bar Chart Controller-->
+        <scene sceneID="xcZ-Un-iee">
+            <objects>
+                <viewController id="Qwo-bp-4nK" customClass="RiskFactorsBarChartController" customModule="Carre1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J7S-lL-mRL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGt-Wx-Tgt">
+                                <rect key="frame" x="0.0" y="20" width="414" height="78"/>
+                                <color key="barTintColor" red="0.097058705029999998" green="0.091627040790000003" blue="0.46507728339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                </textAttributes>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" pointSize="43"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem prompt="                                         " id="IuH-YB-Gc2"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select risk element as source" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgC-Hp-ZPi">
+                                <rect key="frame" x="20" y="131" width="374" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="vC5-DI-hBd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.25098039215686274" blue="0.50588235294117645" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ukW-hW-IzY">
+                                <rect key="frame" x="20" y="191" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voY-Zs-gWT">
+                                <rect key="frame" x="0.0" y="229" width="414" height="507"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XgC-Hp-ZPi" firstAttribute="top" secondItem="TGt-Wx-Tgt" secondAttribute="bottom" constant="33" id="1ck-aw-KQ7"/>
+                            <constraint firstItem="ukW-hW-IzY" firstAttribute="top" secondItem="XgC-Hp-ZPi" secondAttribute="bottom" constant="8" symbolic="YES" id="5bH-Ed-JGC"/>
+                            <constraint firstItem="TGt-Wx-Tgt" firstAttribute="top" secondItem="j3K-9B-bny" secondAttribute="top" id="JXj-6U-fmV"/>
+                            <constraint firstItem="TGt-Wx-Tgt" firstAttribute="leading" secondItem="J7S-lL-mRL" secondAttribute="leading" id="KwQ-2p-cjT"/>
+                            <constraint firstItem="voY-Zs-gWT" firstAttribute="leading" secondItem="TGt-Wx-Tgt" secondAttribute="leading" id="R5j-dB-CUR"/>
+                            <constraint firstItem="XgC-Hp-ZPi" firstAttribute="leading" secondItem="J7S-lL-mRL" secondAttribute="leadingMargin" id="ht3-Dm-M3G"/>
+                            <constraint firstItem="ukW-hW-IzY" firstAttribute="leading" secondItem="XgC-Hp-ZPi" secondAttribute="leading" id="m5a-a3-Pdo"/>
+                            <constraint firstItem="voY-Zs-gWT" firstAttribute="top" secondItem="ukW-hW-IzY" secondAttribute="bottom" constant="8" symbolic="YES" id="n1c-nX-FJI"/>
+                            <constraint firstAttribute="trailing" secondItem="TGt-Wx-Tgt" secondAttribute="trailing" id="p26-rf-Tku"/>
+                            <constraint firstItem="voY-Zs-gWT" firstAttribute="bottom" secondItem="j3K-9B-bny" secondAttribute="bottom" id="tqd-Ah-Ha2"/>
+                            <constraint firstItem="ukW-hW-IzY" firstAttribute="trailing" secondItem="XgC-Hp-ZPi" secondAttribute="trailing" id="uMI-ik-C63"/>
+                            <constraint firstItem="voY-Zs-gWT" firstAttribute="trailing" secondItem="TGt-Wx-Tgt" secondAttribute="trailing" id="y7i-ek-Hk5"/>
+                            <constraint firstItem="ukW-hW-IzY" firstAttribute="centerX" secondItem="TGt-Wx-Tgt" secondAttribute="centerX" id="yR3-r9-niK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="j3K-9B-bny"/>
+                    </view>
+                    <connections>
+                        <outlet property="navigationBar" destination="TGt-Wx-Tgt" id="whO-nU-PDX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XD7-JV-Xle" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44.927536231884062" y="35.054347826086961"/>
+        </scene>
+    </scenes>
+</document>

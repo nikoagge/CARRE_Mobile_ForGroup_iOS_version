@@ -1,0 +1,40 @@
+PODS:
+  - Alamofire (4.8.0)
+  - Charts (3.2.1):
+    - Charts/Core (= 3.2.1)
+  - Charts/Core (3.2.1)
+  - ReachabilitySwift (4.3.0)
+  - SQLite.swift (0.11.5):
+    - SQLite.swift/standard (= 0.11.5)
+  - SQLite.swift/standard (0.11.5)
+  - TimeIntervals (1.0.0)
+  - Unbox (3.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.7)
+  - Charts
+  - ReachabilitySwift
+  - SQLite.swift (~> 0.11.5)
+  - TimeIntervals (~> 1.0.0)
+  - Unbox
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Charts
+    - ReachabilitySwift
+    - SQLite.swift
+    - TimeIntervals
+    - Unbox
+
+SPEC CHECKSUMS:
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
+  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
+  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
+  TimeIntervals: 1ae58fc906d35311c5ca84a689c86c69c2209575
+  Unbox: 9ed33b2a31f7a8a049f54b94d40c4a52a28c4d9d
+
+PODFILE CHECKSUM: c954e97775bb5d43e530d0a536dda2c06295f3b6
+
+COCOAPODS: 1.5.3

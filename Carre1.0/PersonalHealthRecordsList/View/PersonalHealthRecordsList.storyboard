@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1rX-ln-n4w">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Personal Health Records List Controller-->
+        <scene sceneID="DcX-fP-hu9">
+            <objects>
+                <viewController storyboardIdentifier="PersonalHealthRecordsVCSBID" id="1rX-ln-n4w" customClass="PersonalHealthRecordsListController" customModule="Carre1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lE9-Gg-jVe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nLP-TJ-DUB">
+                                <rect key="frame" x="0.0" y="20" width="414" height="78"/>
+                                <color key="barTintColor" red="0.097058705029999998" green="0.091627040790000003" blue="0.46507728339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                </textAttributes>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" pointSize="43"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem prompt="                                         " id="pVB-Nj-4bM"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Personal Health Records (PHRs)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMM-NY-LC3">
+                                <rect key="frame" x="20" y="107" width="374" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="bRH-N8-R6I"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z0q-eo-7gm">
+                                <rect key="frame" x="20" y="150" width="374" height="496"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personalHealthRecordsListCustomCell" rowHeight="105" id="X1r-In-8el" customClass="PersonalHealthRecordsListCustomCell" customModule="Carre1_0" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="105"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X1r-In-8el" id="FDb-sg-9xF">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="104.66666666666667"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vb-A3-oHS">
+                                                    <rect key="frame" x="20" y="11" width="166" height="24"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL0-M9-A7G">
+                                                    <rect key="frame" x="20" y="65" width="90" height="38"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="38" id="fh4-ha-FKx"/>
+                                                        <constraint firstAttribute="width" constant="90" id="rKn-2I-GR1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Fn-aS-Nps">
+                                                    <rect key="frame" x="118" y="64" width="157" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D52-1Y-RbV">
+                                                    <rect key="frame" x="211" y="11" width="104" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="104" id="Uoy-eP-sY8"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6Fn-aS-Nps" firstAttribute="trailing" secondItem="FDb-sg-9xF" secondAttribute="trailingMargin" constant="-48" id="3OK-bm-37a"/>
+                                                <constraint firstItem="1vb-A3-oHS" firstAttribute="top" secondItem="FDb-sg-9xF" secondAttribute="topMargin" id="9rI-SG-5Dr"/>
+                                                <constraint firstItem="1vb-A3-oHS" firstAttribute="leading" secondItem="CL0-M9-A7G" secondAttribute="leading" id="BEW-uN-RLI"/>
+                                                <constraint firstItem="1vb-A3-oHS" firstAttribute="leading" secondItem="FDb-sg-9xF" secondAttribute="leadingMargin" id="EfW-FV-Y4u"/>
+                                                <constraint firstItem="CL0-M9-A7G" firstAttribute="top" secondItem="1vb-A3-oHS" secondAttribute="bottom" constant="30" id="KJe-xf-Mha"/>
+                                                <constraint firstItem="6Fn-aS-Nps" firstAttribute="leading" secondItem="CL0-M9-A7G" secondAttribute="trailing" constant="8" id="KY5-mf-RBh"/>
+                                                <constraint firstAttribute="trailing" secondItem="D52-1Y-RbV" secondAttribute="trailing" constant="28" id="RhT-ca-LrV"/>
+                                                <constraint firstItem="6Fn-aS-Nps" firstAttribute="bottom" secondItem="FDb-sg-9xF" secondAttribute="bottomMargin" constant="10" id="Wrk-52-VPr"/>
+                                                <constraint firstItem="1vb-A3-oHS" firstAttribute="baseline" secondItem="D52-1Y-RbV" secondAttribute="baseline" id="c2t-rP-Po9"/>
+                                                <constraint firstItem="D52-1Y-RbV" firstAttribute="leading" secondItem="1vb-A3-oHS" secondAttribute="trailing" constant="25" id="fIn-Wb-vNd"/>
+                                                <constraint firstItem="6Fn-aS-Nps" firstAttribute="top" secondItem="1vb-A3-oHS" secondAttribute="bottom" constant="29" id="nWn-mu-rPp"/>
+                                                <constraint firstItem="1vb-A3-oHS" firstAttribute="firstBaseline" secondItem="D52-1Y-RbV" secondAttribute="firstBaseline" id="rwZ-z7-Tle"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="CL0-M9-A7G" secondAttribute="bottom" constant="-9" id="z68-wa-1F0"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateValueLabel" destination="6Fn-aS-Nps" id="TRV-FN-jx9"/>
+                                            <outlet property="observableNameLabel" destination="1vb-A3-oHS" id="W83-KQ-nt4"/>
+                                            <outlet property="observableValueLabel" destination="D52-1Y-RbV" id="YoC-le-YJG"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1rX-ln-n4w" id="FG3-S5-Buc"/>
+                                    <outlet property="delegate" destination="1rX-ln-n4w" id="l60-ad-arE"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5L-QL-3cI" customClass="RoundButton" customModule="Carre1_0" customModuleProvider="target">
+                                <rect key="frame" x="344" y="666" width="50" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BAy-HL-aGX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.15033711429999999" green="0.10890350410000001" blue="0.12659417540000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="1rX-ln-n4w" eventType="touchUpInside" id="0am-Iv-v9i"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="z0q-eo-7gm" firstAttribute="top" secondItem="PMM-NY-LC3" secondAttribute="bottom" constant="8" symbolic="YES" id="36P-Am-fFl"/>
+                            <constraint firstItem="nLP-TJ-DUB" firstAttribute="centerX" secondItem="PMM-NY-LC3" secondAttribute="centerX" id="5wd-dR-VSd"/>
+                            <constraint firstItem="q5L-QL-3cI" firstAttribute="top" secondItem="z0q-eo-7gm" secondAttribute="bottom" constant="20" id="B2T-Lv-8iy"/>
+                            <constraint firstAttribute="bottom" secondItem="q5L-QL-3cI" secondAttribute="bottom" constant="20" symbolic="YES" id="C1W-NG-EpQ"/>
+                            <constraint firstItem="PMM-NY-LC3" firstAttribute="leading" secondItem="z0q-eo-7gm" secondAttribute="leading" id="Isv-ZG-R4M"/>
+                            <constraint firstItem="PMM-NY-LC3" firstAttribute="trailing" secondItem="z0q-eo-7gm" secondAttribute="trailing" id="QiV-b5-PNT"/>
+                            <constraint firstItem="PMM-NY-LC3" firstAttribute="top" secondItem="nLP-TJ-DUB" secondAttribute="bottom" constant="9" id="Uzd-CW-Xrf"/>
+                            <constraint firstItem="z0q-eo-7gm" firstAttribute="trailing" secondItem="q5L-QL-3cI" secondAttribute="trailing" id="clc-O4-to5"/>
+                            <constraint firstItem="nLP-TJ-DUB" firstAttribute="leading" secondItem="lE9-Gg-jVe" secondAttribute="leading" id="dZq-3d-j5d"/>
+                            <constraint firstItem="nLP-TJ-DUB" firstAttribute="top" secondItem="Uu1-l2-Jrx" secondAttribute="top" id="jcH-fT-Mfn"/>
+                            <constraint firstAttribute="trailing" secondItem="nLP-TJ-DUB" secondAttribute="trailing" id="lYq-K2-phV"/>
+                            <constraint firstItem="q5L-QL-3cI" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Uu1-l2-Jrx" secondAttribute="leading" constant="344" id="y31-rl-76r"/>
+                            <constraint firstItem="PMM-NY-LC3" firstAttribute="leading" secondItem="lE9-Gg-jVe" secondAttribute="leadingMargin" id="yaf-8Z-0OE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Uu1-l2-Jrx"/>
+                    </view>
+                    <connections>
+                        <outlet property="addButton" destination="q5L-QL-3cI" id="qHk-e7-VW8"/>
+                        <outlet property="availablePHRs" destination="PMM-NY-LC3" id="OGV-ck-xeb"/>
+                        <outlet property="navigationBar" destination="nLP-TJ-DUB" id="QNq-NB-fPF"/>
+                        <outlet property="personalHealthRecordsTableView" destination="z0q-eo-7gm" id="Ih4-sf-yPa"/>
+                        <segue destination="Wft-9j-umS" kind="presentation" identifier="segueToNewPersonalHealthRecord" modalTransitionStyle="crossDissolve" id="iLc-wR-zCZ"/>
+                        <segue destination="6WU-8F-DCh" kind="presentation" identifier="segueToObservablesList" modalTransitionStyle="crossDissolve" id="XZs-ex-MKi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d3v-zO-jd1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="649.27536231884062" y="-708.42391304347836"/>
+        </scene>
+        <!--ObservablesList-->
+        <scene sceneID="BYR-tb-nCl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ObservablesList" id="6WU-8F-DCh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fgZ-Qz-R8W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1221" y="-576"/>
+        </scene>
+        <!--NewPersonalHealthRecord-->
+        <scene sceneID="88S-su-HbH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NewPersonalHealthRecord" id="Wft-9j-umS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0K3-6b-hqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1265" y="-771"/>
+        </scene>
+    </scenes>
+</document>

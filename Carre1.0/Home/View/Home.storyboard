@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pIp-ZK-Cy5">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home Controller-->
+        <scene sceneID="dC4-Cz-Hsh">
+            <objects>
+                <viewController storyboardIdentifier="HomeVCSBID" id="pIp-ZK-Cy5" customClass="HomeController" customModule="Carre1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kTh-Y0-qFX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carre Database" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sL6-ZY-vAW">
+                                <rect key="frame" x="90.666666666666686" y="347" width="233" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHF-O6-Gnw">
+                                <rect key="frame" x="0.0" y="20" width="414" height="78"/>
+                                <color key="barTintColor" red="0.097058705029999998" green="0.091627040790000003" blue="0.46507728339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                </textAttributes>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" pointSize="43"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem prompt="                                         " id="4xZ-bk-FtX"/>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_carre_about" translatesAutoresizingMaskIntoConstraints="NO" id="0fT-X3-YwV">
+                                <rect key="frame" x="20" y="636" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="1sq-qY-phv"/>
+                                    <constraint firstAttribute="width" constant="60" id="FUp-LL-gz9"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_eu_flag" translatesAutoresizingMaskIntoConstraints="NO" id="4R6-ph-STE">
+                                <rect key="frame" x="322" y="636" width="72" height="61"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcZ-wn-gJP" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="124" width="374" height="477"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dsP-Uu-TtR">
+                                <rect key="frame" x="88" y="636" width="224" height="69"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">CARRE Project is co-funded by the EC under the grant no. FP7-ICT-611140.
+
+Developed by Euclid, The Algorithm and Privacy Research Unit.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BHF-O6-Gnw" firstAttribute="top" secondItem="Hza-Pu-4ZM" secondAttribute="top" id="2Lx-vX-yc4"/>
+                            <constraint firstItem="dsP-Uu-TtR" firstAttribute="leading" secondItem="0fT-X3-YwV" secondAttribute="trailing" constant="8" id="4pK-Le-8o4"/>
+                            <constraint firstItem="rcZ-wn-gJP" firstAttribute="leading" secondItem="0fT-X3-YwV" secondAttribute="leading" id="5Ri-JF-Ojt"/>
+                            <constraint firstItem="rcZ-wn-gJP" firstAttribute="top" secondItem="BHF-O6-Gnw" secondAttribute="bottom" constant="26" id="8Gb-r0-FQ5"/>
+                            <constraint firstAttribute="bottom" secondItem="rcZ-wn-gJP" secondAttribute="bottom" constant="135" id="HpC-vd-icL"/>
+                            <constraint firstItem="4R6-ph-STE" firstAttribute="leading" secondItem="dsP-Uu-TtR" secondAttribute="trailing" constant="10" id="J6r-sE-ef1"/>
+                            <constraint firstItem="rcZ-wn-gJP" firstAttribute="trailing" secondItem="4R6-ph-STE" secondAttribute="trailing" id="P8p-4C-8mu"/>
+                            <constraint firstItem="sL6-ZY-vAW" firstAttribute="centerY" secondItem="kTh-Y0-qFX" secondAttribute="centerY" id="Qhd-6C-l1U"/>
+                            <constraint firstAttribute="trailing" secondItem="BHF-O6-Gnw" secondAttribute="trailing" id="U3S-hR-9sG"/>
+                            <constraint firstItem="4R6-ph-STE" firstAttribute="bottom" secondItem="0fT-X3-YwV" secondAttribute="bottom" constant="1" id="Ufc-gP-acX"/>
+                            <constraint firstItem="rcZ-wn-gJP" firstAttribute="leading" secondItem="kTh-Y0-qFX" secondAttribute="leadingMargin" id="XcA-oL-eRK"/>
+                            <constraint firstAttribute="bottom" secondItem="0fT-X3-YwV" secondAttribute="bottom" constant="40" id="YsZ-Vy-ZDZ"/>
+                            <constraint firstItem="BHF-O6-Gnw" firstAttribute="leading" secondItem="kTh-Y0-qFX" secondAttribute="leading" id="Z1M-Xe-IVo"/>
+                            <constraint firstItem="dsP-Uu-TtR" firstAttribute="top" secondItem="rcZ-wn-gJP" secondAttribute="bottom" constant="35" id="bjj-AU-raq"/>
+                            <constraint firstItem="4R6-ph-STE" firstAttribute="bottom" secondItem="dsP-Uu-TtR" secondAttribute="bottom" constant="-8" id="fOG-j7-9ql"/>
+                            <constraint firstItem="4R6-ph-STE" firstAttribute="top" secondItem="0fT-X3-YwV" secondAttribute="top" id="i9x-C3-MnP"/>
+                            <constraint firstItem="rcZ-wn-gJP" firstAttribute="centerX" secondItem="sL6-ZY-vAW" secondAttribute="centerX" id="j5d-r3-g2m"/>
+                            <constraint firstItem="4R6-ph-STE" firstAttribute="leading" secondItem="dsP-Uu-TtR" secondAttribute="trailing" constant="10" id="o5o-iT-c62"/>
+                            <constraint firstItem="BHF-O6-Gnw" firstAttribute="centerX" secondItem="sL6-ZY-vAW" secondAttribute="centerX" id="vS2-dp-2an"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Hza-Pu-4ZM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RHJ-mK-gd1"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="BHF-O6-Gnw" id="FSE-mN-byc"/>
+                        <outlet property="pieChartView" destination="rcZ-wn-gJP" id="dfQ-6U-Ar4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Gn-eA-kg3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-111" y="-708"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_carre_about" width="72" height="72"/>
+        <image name="ic_eu_flag" width="72" height="72"/>
+    </resources>
+</document>
