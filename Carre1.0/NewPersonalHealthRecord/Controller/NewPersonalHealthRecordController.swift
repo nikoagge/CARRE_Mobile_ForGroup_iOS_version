@@ -75,7 +75,7 @@ class NewPersonalHealthRecordController: UIViewController {
             
             observableNameLabel.text = PersonalHealthRecordsListController.shared.helpObservableName
             valueForObservableTextField.text = PersonalHealthRecordsListController.shared.helpObservableValue
-            dateAndTimeTextField.text = PersonalHealthRecordsListController.shared.helpDateAndTimeInsertionValue
+            dateAndTimeTextField.text = getDateInString(forDate: PersonalHealthRecordsListController.shared.helpDateAndTimeInsertionValue) 
             labelAndEnumValuesDictionary = CarreDatabaseService.shared.getLabelAndEnumValues(forObservableName: PersonalHealthRecordsListController.shared.helpObservableName)
             
             if labelAndEnumValuesDictionary["label"] == "" {
@@ -226,5 +226,18 @@ class NewPersonalHealthRecordController: UIViewController {
         returnedDate = dateFormatter.date(from: dateAndTimeTextField.text!)!
         
         return returnedDate
+    }
+    
+    
+    func getDateInString(forDate date: Date) -> String {
+        
+        var returnedString = String()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy h:mm a"
+        
+        returnedString = dateFormatter.string(from: date)
+        
+        return returnedString
     }
 }

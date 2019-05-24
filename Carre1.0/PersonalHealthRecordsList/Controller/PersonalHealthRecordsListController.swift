@@ -17,7 +17,7 @@ class PersonalHealthRecordsListController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var personalHealthRecordsTableView: UITableView!
     
-    var personalHealthRecordsArrayOfDictionaries = [[String: String]]()
+    var personalHealthRecordsArrayOfDictionaries = [[String: Any]]()
     var personalHealthRecordsRiskElements = [String]()
     
     let segueToNewPersonalHealthRecordIdentifier = "segueToNewPersonalHealthRecord"
@@ -126,6 +126,19 @@ class PersonalHealthRecordsListController: UIViewController {
     func getPersonalHealthRecord() {
         
         PersonalHealthRecordsListController.shared.personalHealthRecord = CarreDatabaseService.shared.getPersonalHealthRecord(forObservableName: PersonalHealthRecordsListController.shared.helpObservableName, forObservableValue: PersonalHealthRecordsListController.shared.helpObservableValue, forDateAndTimeValueInsertion: PersonalHealthRecordsListController.shared.helpDateAndTimeInsertionValue)
+    }
+    
+    
+    func getDateInString(forDate date: Date) -> String {
+        
+        var returnedString = String()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy h:mm a"
+        
+        returnedString = dateFormatter.string(from: date)
+        
+        return returnedString
     }
 }
 

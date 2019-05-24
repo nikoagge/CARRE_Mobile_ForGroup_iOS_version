@@ -22,9 +22,9 @@ extension PersonalHealthRecordsListController: UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let personalHealthRecordsListCustomCell = tableView.dequeueReusableCell(withIdentifier: personalHealthRecordsListCustomCellIdentifier, for: indexPath) as! PersonalHealthRecordsListCustomCell
-        personalHealthRecordsListCustomCell.observableNameLabel.text = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordObservableName"]
-        personalHealthRecordsListCustomCell.observableValueLabel.text = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordObservableValue"]
-        personalHealthRecordsListCustomCell.dateValueLabel.text = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordDateAndTimeValueInsertion"]
+        personalHealthRecordsListCustomCell.observableNameLabel.text = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordObservableName"] as? String
+        personalHealthRecordsListCustomCell.observableValueLabel.text = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordObservableValue"] as? String
+        personalHealthRecordsListCustomCell.dateValueLabel.text = getDateInString(forDate: personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordDateAndTimeValueInsertion"] as! Date) 
         
         return personalHealthRecordsListCustomCell
     }
@@ -35,8 +35,8 @@ extension PersonalHealthRecordsListController: UITableViewDelegate, UITableViewD
         showUpdateAndDeleteAlert()
         
         personalHealthRecordsTableView.deselectRow(at: indexPath, animated: true)
-        PersonalHealthRecordsListController.shared.helpObservableName = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordObservableName"]!
-        PersonalHealthRecordsListController.shared.helpObservableValue = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordObservableValue"]!
-        PersonalHealthRecordsListController.shared.helpDateAndTimeInsertionValue = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordDateAndTimeValueInsertion"]!
+        PersonalHealthRecordsListController.shared.helpObservableName = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordObservableName"]! as! String
+        PersonalHealthRecordsListController.shared.helpObservableValue = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordObservableValue"]! as! String
+        PersonalHealthRecordsListController.shared.helpDateAndTimeInsertionValue = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordDateAndTimeValueInsertion"]! as! Date
     }
 }
