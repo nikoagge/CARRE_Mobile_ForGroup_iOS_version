@@ -31,6 +31,7 @@ extension ObservablesListController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
         observableName = observableNames[indexPath.row]
+        observableMeasurementType = observablesMeasurementType[indexPath.row]
         
         performSegue(withIdentifier: segueToNewPersonalHealthRecordIdentifier, sender: self)
     }
@@ -42,6 +43,7 @@ extension ObservablesListController: UITableViewDelegate, UITableViewDataSource 
             
             let newPersonalHealthRecordVC = segue.destination as? NewPersonalHealthRecordController
             newPersonalHealthRecordVC?.observableName = self.observableName
+            newPersonalHealthRecordVC?.observableMeasurementType = self.observableMeasurementType
         }
     }
 }

@@ -10,7 +10,7 @@
 import UIKit
 import SQLite
 
-class NewPersonalHealthRecordController: UIViewController {
+class NewPersonalHealthRecordController: UIViewController, UITextFieldDelegate {
 
 
     @IBOutlet weak var observableNameLabel: UILabel!
@@ -18,6 +18,7 @@ class NewPersonalHealthRecordController: UIViewController {
     @IBOutlet weak var dateAndTimeTextField: UITextField!
     
     var observableName = String()
+    var observableMeasurementType = String()
     var observableValue = String()
     var dateAndTimeInsertionValue = String()
     
@@ -25,6 +26,8 @@ class NewPersonalHealthRecordController: UIViewController {
     
     let enumValuesPicker = UIPickerView()
     var enumValuesData = [String]()
+    
+    var measurementTypesIdAndDatatype = [[String]]()
     
     static let shared = NewPersonalHealthRecordController()
 
@@ -43,6 +46,8 @@ class NewPersonalHealthRecordController: UIViewController {
         enumValuesPicker.dataSource = self
         
         CarreDatabaseService.shared.connectToDatabase()
+        
+        measurementTypesIdAndDatatype = CarreDatabaseService.shared.getMeasurementTypesIdAndDatatype()
     }
     
     
@@ -51,8 +56,6 @@ class NewPersonalHealthRecordController: UIViewController {
         if NewPersonalHealthRecordController.shared.newRecord {
             
             observableNameLabel.text = observableName
-            
-            //CarreDatabaseService.shared.printRiskElementId(forObservableName: observableNameLabel.text!)
             
             labelAndEnumValuesDictionary = CarreDatabaseService.shared.getLabelAndEnumValues(forObservableName: observableName)
             
@@ -65,17 +68,15 @@ class NewPersonalHealthRecordController: UIViewController {
                 
                 valueForObservableTextField.text = enumValuesData[0]
                 valueForObservableTextField.inputView = enumValuesPicker
-                
-                //createToolBar(forIdentifier: "enumValues")
             }
         }
         
         if NewPersonalHealthRecordController.shared.updateRecord {
             
-            
             observableNameLabel.text = PersonalHealthRecordsListController.shared.helpObservableName
             valueForObservableTextField.text = PersonalHealthRecordsListController.shared.helpObservableValue
-            dateAndTimeTextField.text = getDateInString(forDate: PersonalHealthRecordsListController.shared.helpDateAndTimeInsertionValue) 
+            dateAndTimeTextField.text = getDateInString(forDate: PersonalHealthRecordsListController.shared.helpDateAndTimeInsertionValue)
+            observableMeasurementType = PersonalHealthRecordsListController.shared.helpObservableMeasurementType
             labelAndEnumValuesDictionary = CarreDatabaseService.shared.getLabelAndEnumValues(forObservableName: PersonalHealthRecordsListController.shared.helpObservableName)
             
             if labelAndEnumValuesDictionary["label"] == "" {
@@ -83,11 +84,10 @@ class NewPersonalHealthRecordController: UIViewController {
                 enumValuesData = (labelAndEnumValuesDictionary["enumValues"]?.components(separatedBy: ";"))!
                 enumValuesPicker.selectRow(enumValuesData.firstIndex(of: valueForObservableTextField.text!)!, inComponent: 0, animated: true)
                 valueForObservableTextField.inputView = enumValuesPicker
-                
-                //createToolBar(forIdentifier: "enumValues")
             }
         }
         
+        showNumbersKeyboardIfNeeded()
         createToolBar(forIdentifier: "valueForObservableTextField")
     }
     
@@ -182,7 +182,7 @@ class NewPersonalHealthRecordController: UIViewController {
             if NewPersonalHealthRecordController.shared.newRecord {
                 
                 CarreDatabaseService.shared.insertNewPersonalHealthRecord(forObservableName: observableNameLabel.text!, forObservableValue: valueForObservableTextField.text!, forDateAndTime: date)
-                //CarreDatabaseService.shared.printRiskElementId(forObservableName: observableNameLabel.text!)
+            
                 actionsAfterInsertOrUpdatePersonalHealthRecord()
             }
             
@@ -214,6 +214,8 @@ class NewPersonalHealthRecordController: UIViewController {
             
             NotificationCenter.default.post(name: self.reloadTableViewNotification, object: nil)
             NotificationCenter.default.post(name: self.hasNewPersonalHealthRecordViewControllerAppearedNotification, object: nil)
+            
+            RiskFactorsBarChartController.shared.helpPopulateSpinnerFuncAfterUpdateOrDelete()
         }
     }
     
@@ -239,5 +241,32 @@ class NewPersonalHealthRecordController: UIViewController {
         returnedString = dateFormatter.string(from: date)
         
         return returnedString
+    }
+    
+    
+    func showNumbersKeyboardIfNeeded() {
+
+        for measurementTypeArray in measurementTypesIdAndDatatype {
+            
+            if measurementTypeArray[0] == self.observableMeasurementType {
+                
+                if measurementTypeArray[1] == "http://www.w3.org/2001/XMLSchema#float" || measurementTypeArray[1] == "http://www.w3.org/2001/XMLSchema#integer" {
+                    
+                    valueForObservableTextField.keyboardType = .numbersAndPunctuation
+                    valueForObservableTextField.returnKeyType = .done
+                    valueForObservableTextField.delegate = self
+                    
+                    break
+                }
+            }
+        }
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        self.view.endEditing(true)
+        
+        return false
     }
 }

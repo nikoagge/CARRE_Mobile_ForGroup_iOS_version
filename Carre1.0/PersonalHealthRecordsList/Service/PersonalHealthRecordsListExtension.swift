@@ -38,5 +38,26 @@ extension PersonalHealthRecordsListController: UITableViewDelegate, UITableViewD
         PersonalHealthRecordsListController.shared.helpObservableName = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordObservableName"]! as! String
         PersonalHealthRecordsListController.shared.helpObservableValue = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordObservableValue"]! as! String
         PersonalHealthRecordsListController.shared.helpDateAndTimeInsertionValue = personalHealthRecordsArrayOfDictionaries[indexPath.row]["personalHealthRecordDateAndTimeValueInsertion"]! as! Date
+        PersonalHealthRecordsListController.shared.helpObservableMeasurementType = findMeasurementType(forObservableName: PersonalHealthRecordsListController.shared.helpObservableName)
+        
+    }
+    
+    
+    func findMeasurementType(forObservableName observableName: String) -> String {
+        
+        var measurementType = String()
+        observablesNameAndMeasurementType = CarreDatabaseService.shared.getObservablesNameAndMeasurementType()
+        
+        for observableArray in observablesNameAndMeasurementType {
+            
+            if observableArray[0] == observableName {
+                
+                measurementType = observableArray[1]
+                
+                return measurementType
+            }
+        }
+        
+        return measurementType
     }
 }

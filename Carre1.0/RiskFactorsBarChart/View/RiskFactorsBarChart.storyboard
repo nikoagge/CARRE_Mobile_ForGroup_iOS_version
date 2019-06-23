@@ -49,7 +49,21 @@
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voY-Zs-gWT">
                                 <rect key="frame" x="0.0" y="229" width="414" height="507"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTF-4b-W5k" customClass="BarChartView" customModule="Charts">
+                                        <rect key="frame" x="16" y="16" width="382" height="470"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="470" id="YJi-Sx-ywk"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="YTF-4b-W5k" secondAttribute="trailing" constant="16" id="We5-k1-fcE"/>
+                                    <constraint firstItem="YTF-4b-W5k" firstAttribute="leading" secondItem="voY-Zs-gWT" secondAttribute="leading" constant="16" id="gFD-13-c1J"/>
+                                    <constraint firstItem="YTF-4b-W5k" firstAttribute="top" secondItem="voY-Zs-gWT" secondAttribute="top" constant="16" id="r0r-63-h6j"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -72,11 +86,13 @@
                     </view>
                     <connections>
                         <outlet property="navigationBar" destination="TGt-Wx-Tgt" id="whO-nU-PDX"/>
+                        <outlet property="riskFactorsBarChartView" destination="YTF-4b-W5k" id="Azx-VA-gTc"/>
+                        <outlet property="riskFactorsSourceTextField" destination="ukW-hW-IzY" id="6NJ-i8-TdK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XD7-JV-Xle" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="44.927536231884062" y="35.054347826086961"/>
+            <point key="canvasLocation" x="-342.02898550724638" y="-237.22826086956525"/>
         </scene>
     </scenes>
 </document>

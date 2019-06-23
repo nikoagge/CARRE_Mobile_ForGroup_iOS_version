@@ -88,9 +88,6 @@ class HomeController: UIViewController {
                 HomeController.shared.defaults.set(self.firstTimeViewAppearedAndInternetOk, forKey: HomeController.shared.firstTimeViewAppearedAndInternetOkKey)
             }
         }
-        
-        
-        CarreDatabaseService.shared.getObservablesTableDistinctValues()
     }
     
     

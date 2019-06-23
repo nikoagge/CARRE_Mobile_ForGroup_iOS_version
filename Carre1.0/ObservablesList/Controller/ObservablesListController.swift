@@ -16,7 +16,9 @@ class ObservablesListController: UIViewController {
     @IBOutlet weak var observablesListTableView: UITableView!
     
     var observableNames = [String]()
+    var observablesMeasurementType = [String]()
     var observableName = String()
+    var observableMeasurementType = String()
     var observablesData = [[String: Any]]()
    
     let observablesListTableviewCellIdentifier = "observablesListTableviewCell"
@@ -31,6 +33,7 @@ class ObservablesListController: UIViewController {
         super.viewDidLoad()
         
         observableNames = CarreDatabaseService.shared.getAllObservablesNames()
+        observablesMeasurementType = CarreDatabaseService.shared.getObservablesMeasurementType()
         
         observablesListTableView.tableFooterView = UIView()
         

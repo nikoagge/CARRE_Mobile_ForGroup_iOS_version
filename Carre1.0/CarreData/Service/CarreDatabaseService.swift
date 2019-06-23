@@ -485,6 +485,30 @@ class CarreDatabaseService {
     }
     
     
+    var riskEvidencesCondition = [String]()
+    func printRiskEvidenceConditionColumn() {
+        
+        do {
+            
+            for riskEvidenceTableRow in try databaseConnection.prepare(riskEvidencesTable) {
+                
+                riskEvidencesCondition.append(riskEvidenceTableRow[riskEvidenceConditionColumn])
+                //print(" \(riskEvidenceTableRow[riskEvidenceConditionColumn])")
+            }
+            
+            riskEvidencesCondition.sort()
+            
+            for riskEv in riskEvidencesCondition {
+
+                print(riskEv)
+            }
+        } catch {
+            
+            print(error)
+        }
+    }
+    
+    
     func getLabelAndEnumValues(forObservableName observableName: String) -> [String: String] {
         
         var measurementTypeForObservableName = String()
@@ -544,6 +568,8 @@ class CarreDatabaseService {
             
             print(error)
         }
+        
+        RiskFactorsBarChartController.shared.helpPopulateSpinnerFuncAfterUpdateOrDelete()
     }
     
     
@@ -579,7 +605,6 @@ class CarreDatabaseService {
             for observable in try databaseConnection.prepare(observableTableRow) {
                 
                 observableName = observable[observableNameColumn]
-                print(observable[observableNameColumn])
             }
         } catch {
             
@@ -646,5 +671,219 @@ class CarreDatabaseService {
             
             print(error)
         }
+    }
+    
+    
+    func getRiskEvidencesConditionArray() -> [String] {
+        
+        var riskEvidencesConditionSortedArray = [String]()
+        
+        do {
+            
+            for riskEvidencesTableRow in try databaseConnection.prepare(riskEvidencesTable.select([riskEvidenceConditionColumn])) {
+
+                riskEvidencesConditionSortedArray.append(riskEvidencesTableRow[riskEvidenceConditionColumn])
+
+            }
+        } catch {
+            
+            print(error)
+        }
+        
+        return riskEvidencesConditionSortedArray
+    }
+    
+    
+    func getRiskEvidencesRiskFactorSource() -> [String] {
+        
+        var riskEvidencesRiskFactorSource = [String]()
+        
+        do {
+            
+            for riskEvidencesTableRow in try databaseConnection.prepare(riskEvidencesTable.select([riskEvidenceHasRiskFactorSourceColumn])) {
+
+                riskEvidencesRiskFactorSource.append(riskEvidencesTableRow[riskEvidenceHasRiskFactorSourceColumn])
+            }
+        } catch {
+            
+            print(error)
+        }
+        
+        return riskEvidencesRiskFactorSource
+    }
+    
+    
+    func getRiskEvidencesRiskFactorTarget() -> [[String]] {
+        
+        var riskEvidencesRiskFactorTarget = [[String]]()
+        
+        do {
+            
+            for riskEvidencesTableRow in try databaseConnection.prepare(riskEvidencesTable.select(riskEvidenceHasRiskFactorTargetColumn, riskEvidenceHasRiskFactorSourceColumn)) {
+                
+               var helpArr = [String]()
+               helpArr.append(riskEvidencesTableRow[riskEvidenceHasRiskFactorSourceColumn])
+                helpArr.append(riskEvidencesTableRow[riskEvidenceHasRiskFactorTargetColumn])
+                riskEvidencesRiskFactorTarget.append(helpArr)
+            }
+        } catch {
+            
+            print(error)
+        }
+        
+        return riskEvidencesRiskFactorTarget
+    }
+    
+    
+    func getRiskEvidencesRatioValue() -> [[String]] {
+        
+        var riskEvidencesRatioValue = [[String]]()
+        
+        
+        do {
+            
+            for riskEvidencesTableRow in try databaseConnection.prepare(riskEvidencesTable.select(
+                riskEvidenceRatioValueColumn, riskEvidenceHasRiskFactorSourceColumn)) {
+                    
+                var helpArr = [String]()
+                helpArr.append( riskEvidencesTableRow[riskEvidenceHasRiskFactorSourceColumn])
+                    
+                let helpVar = String(riskEvidencesTableRow[riskEvidenceRatioValueColumn])
+                helpArr.append(helpVar)
+                riskEvidencesRatioValue.append(helpArr)
+            }
+        } catch {
+            
+            print(error)
+        }
+        
+        return riskEvidencesRatioValue
+    }
+    
+    
+    func getPersonalHealthRecordsObservablesAndValues() -> [String] {
+        
+        var personalHealthRecordsObservablesAndValues = [String]()
+        
+        do {
+            
+            for personalHealthRecordsTableRow in try  self.databaseConnection.prepare(personalHealthRecordsTable.select(*)) {
+                
+                var personalHealthRecordObservableIdValueHelpString = personalHealthRecordsTableRow[personalHealthRecordObservableIdValueColumn].replacingOccurrences(of: "http://carre.kmi.open.ac.uk/observables/", with: "")
+                personalHealthRecordObservableIdValueHelpString = personalHealthRecordObservableIdValueHelpString + " = "
+             
+                var stringToAppend = personalHealthRecordObservableIdValueHelpString + personalHealthRecordsTableRow[personalHealthRecordObservableValueColumn]
+                
+                personalHealthRecordsObservablesAndValues.append(stringToAppend)
+            }
+        } catch {
+            
+            print(error)
+        }
+        
+        return personalHealthRecordsObservablesAndValues
+    }
+    
+    
+    func getRiskElementsId() -> [String] {
+        
+        var riskElementsId = [String]()
+        
+        do {
+            
+            for riskElementsTableRow in try databaseConnection.prepare(riskElementsTable.select([riskElementIdColumn])) {
+                
+                riskElementsId.append(riskElementsTableRow[riskElementIdColumn])
+            }
+        } catch {
+            
+            print(error)
+        }
+        
+        return riskElementsId
+    }
+    
+    
+    func getRiskElementsName() -> [String] {
+        
+        var riskElementsName = [String]()
+        
+        do {
+            
+            for riskElementsTableRow in try databaseConnection.prepare(riskElementsTable.select([diseaseColumn])) {
+                
+                riskElementsName.append(riskElementsTableRow[diseaseColumn])
+            }
+        } catch {
+            
+            print(error)
+        }
+        
+        return riskElementsName
+    }
+    
+    
+    func getObservablesMeasurementType() -> [String] {
+        
+        var observablesMeasurementType = [String]()
+        
+        do {
+            
+            for observablesTableRow in try databaseConnection.prepare(observablesTable.select(measurementElementColumn)) {
+                
+                observablesMeasurementType.append(observablesTableRow[measurementElementColumn])
+            }
+        } catch {
+            
+            print(error)
+        }
+        
+        return observablesMeasurementType
+    }
+    
+    
+    func getMeasurementTypesIdAndDatatype() -> [[String]] {
+        
+        var measurementTypesIdAndDatatype = [[String]]()
+        
+        do {
+            
+            for measurementTypesTableRow in try databaseConnection.prepare(measurementTypesTable.select(measurementTypeIdColumn, measurementTypeDatatypeColumn)) {
+               
+                var helpArr = [String]()
+                helpArr.append(measurementTypesTableRow[measurementTypeIdColumn])
+                helpArr.append(measurementTypesTableRow[measurementTypeDatatypeColumn])
+                
+                measurementTypesIdAndDatatype.append(helpArr)
+            }
+        } catch {
+            
+            print(error)
+        }
+        
+        return measurementTypesIdAndDatatype
+    }
+    
+    
+    func getObservablesNameAndMeasurementType() -> [[String]] {
+        
+        var observablesNameAndMeasurementType = [[String]]()
+        
+        do {
+            
+            for observablesTableRow in try databaseConnection.prepare(observablesTable.select(observableNameColumn, measurementElementColumn)) {
+                
+                var helpArr = [String]()
+                helpArr.append(observablesTableRow[observableNameColumn])
+                helpArr.append(observablesTableRow[measurementElementColumn])
+                
+                observablesNameAndMeasurementType.append(helpArr)
+            }
+        } catch {
+            
+            print(error)
+        }
+        
+        return observablesNameAndMeasurementType
     }
 }

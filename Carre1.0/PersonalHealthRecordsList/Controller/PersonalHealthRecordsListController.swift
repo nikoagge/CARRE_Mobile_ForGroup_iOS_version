@@ -9,6 +9,7 @@
 import UIKit
 import SQLite
 
+
 class PersonalHealthRecordsListController: UIViewController {
 
     
@@ -19,6 +20,9 @@ class PersonalHealthRecordsListController: UIViewController {
     
     var personalHealthRecordsArrayOfDictionaries = [[String: Any]]()
     var personalHealthRecordsRiskElements = [String]()
+    var observablesMeasurementType = [String]()
+    var measurementTypesIdAndDatatype = [[String]]()
+    var observablesNameAndMeasurementType = [[String]]()
     
     let segueToNewPersonalHealthRecordIdentifier = "segueToNewPersonalHealthRecord"
     let personalHealthRecordsListCustomCellIdentifier = "personalHealthRecordsListCustomCell"
@@ -27,6 +31,7 @@ class PersonalHealthRecordsListController: UIViewController {
     
     var helpObservableName = String()
     var helpObservableValue = String()
+    var helpObservableMeasurementType = String()
     var helpDateAndTimeInsertionValue = Date()
     
     var personalHealthRecord: Table?
@@ -53,8 +58,6 @@ class PersonalHealthRecordsListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         reloadTableView()
-        
-        CarreDatabaseService.shared.printPersonalHealthRecordsRiskElementId()
     }
     
     
@@ -106,10 +109,6 @@ class PersonalHealthRecordsListController: UIViewController {
     @objc func reloadTableView() {
         
         personalHealthRecordsArrayOfDictionaries = CarreDatabaseService.shared.getAllPersonalHealthRecords()
-        
-        //PersonalHealthRecordsListController.shared.personalHealthRecordsRiskElements = CarreDatabaseService.shared.getPersonalHealthRecordsRiskElements()
-        
-        //print(PersonalHealthRecordsListController.shared.personalHealthRecordsRiskElements)
         
         self.personalHealthRecordsTableView.reloadData()
     }
