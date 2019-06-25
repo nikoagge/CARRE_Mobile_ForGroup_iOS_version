@@ -36,12 +36,34 @@ extension RiskFactorsBarChartController: UIPickerViewDelegate, UIPickerViewDataS
         
         riskFactorsSourceTextField.text = self.riskFactorsSourceValuesForPickerView[row]
 
-        self.riskEvidencesRatioValueMatched = fillRiskFactorsRatioValueMatched(forRiskFactorSource: self.riskFactorsSourceMatched[row])
-        self.riskFactorsTargetMatched = fillRiskFactorsTargetMatched(forRiskFactorSource: self.riskFactorsSourceMatched[row])
+        clearArrays()
+        fillArrays(forRiskFactorSource: self.riskFactorsSourceMatched[row])
         
+        print(self.riskFactorsAssociationTypeElevates)
+        print(self.riskFactorsAssociationTypeReduces)
+        print(self.riskFactorsAssociationTypeCauses)
+        print(self.riskFactorsAssociationTypeIsAnIssueIn)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-
-            self.setupRiskFactorsBarChart(forRiskFactorTargets: self.riskFactorsTargetMatched, forRiskFactorsRatioValue: self.riskEvidencesRatioValueMatched)
+            
+            self.setupRiskFactorsBarChart(forRiskFactorsAssociationTypeIsAnIssueIn: self.riskFactorsAssociationTypeIsAnIssueIn, forRiskFactorsAssociationTypeCauses: self.riskFactorsAssociationTypeCauses, forRiskFactorsAssociationTypeReduces: self.riskFactorsAssociationTypeReduces, forRiskFactorsAssociationTypeElevates: self.riskFactorsAssociationTypeElevates)
         }
+    }
+    
+    
+    func fillArrays(forRiskFactorSource riskFactorSource: String) {
+        
+        self.riskEvidencesRatioValueMatched = fillRiskFactorsRatioValueMatched(forRiskFactorSource: riskFactorSource)
+        self.riskFactorsTargetMatched = fillRiskFactorsTargetMatched(forRiskFactorSource: riskFactorSource)
+        self.riskEvidencesHasRiskFactorAssociationTypeMatched = fillRiskFactorsHasAssociationTypeMatched(forRiskFactorSource: riskFactorSource)
+        decideRiskFactorsColor()
+    }
+    
+    
+    func clearArrays() {
+        
+        self.riskFactorsAssociationTypeIsAnIssueIn.removeAll()
+        self.riskFactorsAssociationTypeCauses.removeAll()
+        self.riskFactorsAssociationTypeReduces.removeAll()
+        self.riskFactorsAssociationTypeElevates.removeAll()
     }
 }

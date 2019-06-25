@@ -65,6 +65,8 @@ class HomeController: UIViewController {
                     self.showNetworkAlert(forIdentifier: self.basicTablesDontExistIdentifier)
                 }
             }
+            
+            CarreDatabaseService.shared.printRiskEvidencesAssociationType()
         }
 
         if HomeController.shared.defaults.value(forKey: HomeController.shared.firstTimeViewAppearedAndInternetOkKey) == nil {

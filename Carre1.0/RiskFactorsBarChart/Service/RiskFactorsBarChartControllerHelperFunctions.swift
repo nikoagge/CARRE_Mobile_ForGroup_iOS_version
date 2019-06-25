@@ -370,6 +370,7 @@ extension RiskFactorsBarChartController {
         self.riskEvidencesRiskFactorSource = CarreDatabaseService.shared.getRiskEvidencesRiskFactorSource()
         self.riskEvidencesRiskFactorTarget = CarreDatabaseService.shared.getRiskEvidencesRiskFactorTarget()
         self.riskEvidencesRatioValue = CarreDatabaseService.shared.getRiskEvidencesRatioValue()
+        self.riskEvidencesHasRiskFactorAssociationType = CarreDatabaseService.shared.getRiskEvidencesHasRiskFactorAssociationType()
         self.riskEvidencesCondition = removeParenthesesFromRiskEvidencesConditionArray(forRiskEvidencesConditionArray: self.initialRiskEvidencesCondition)
         self.riskEvidencesCondition = removeApostropheFromRiskEvidencesConditionArray(forRiskEvidencesConditionArray: self.riskEvidencesCondition)
         self.riskEvidencesConditionArrayOfArrays = separateElementsOfRiskEvidencesConditionArray(forRiskEvidencesConditionArray: self.riskEvidencesCondition)
@@ -380,7 +381,7 @@ extension RiskFactorsBarChartController {
     }
     
     
-    func matchIndexesWithRiskFactorsSourceRiskFactorsTargetAndRatioValue() {
+    func matchIndexesWithRiskFactorsSourceMatched() {
         
         self.personalHealthRecordsObservablesAndValues = CarreDatabaseService.shared.getPersonalHealthRecordsObservablesAndValues()
         checkIfPHRsObservablesAndValuesMatchRVsCondition(forRiskEvidencesCondition: self.riskEvidencesConditionArrayOfArrays, forObservablesAndValues: self.personalHealthRecordsObservablesAndValues)
@@ -421,7 +422,7 @@ extension RiskFactorsBarChartController {
         self.personalHealthRecordsObservablesAndValues.removeAll()
         self.riskFactorsSourceMatched.removeAll()
         riskFactorsSourceValuesForPickerView.removeAll()
-        matchIndexesWithRiskFactorsSourceRiskFactorsTargetAndRatioValue()
+        matchIndexesWithRiskFactorsSourceMatched()
         fillRiskFactorsSourceValuesForPickerView()
         self.riskFactorsSourcePickerView.reloadAllComponents()
     }
@@ -444,9 +445,12 @@ extension RiskFactorsBarChartController {
         
         for i in 0..<riskFactorsTarget.count {
             
-            let dataEntry = BarChartDataEntry(x: Double(i), y: riskFactorsRatioValue[i])
-            
-            dataEntries.append(dataEntry)
+            if riskFactorsRatioValue[i] >= 0 {
+                
+                let dataEntry = BarChartDataEntry(x: Double(i), y: riskFactorsRatioValue[i])
+                
+                dataEntries.append(dataEntry)
+            }
         }
         
         let chartDataSet = BarChartDataSet(values: dataEntries, label: "Risk ratio values")
@@ -454,6 +458,127 @@ extension RiskFactorsBarChartController {
         let chartData = BarChartData(dataSet: chartDataSet)
         
         riskFactorsBarChartView.data = chartData
+        riskFactorsBarChartView.rightAxis.enabled = false
+        riskFactorsBarChartView.xAxis.enabled = false
+        riskFactorsBarChartView.xAxis.gridColor = .clear
+        riskFactorsBarChartView.leftAxis.gridColor = .clear
+        riskFactorsBarChartView.rightAxis.gridColor = .clear
+    }
+    
+    
+    func setupRiskFactorsBarChart(forRiskFactorsAssociationTypeIsAnIssueIn riskFactorsAssociationTypeIsAnIssueIn: [Double], forRiskFactorsAssociationTypeCauses riskFactorsAssociationTypeCauses: [Double], forRiskFactorsAssociationTypeReduces riskFactorsAssociationTypeReduces: [Double], forRiskFactorsAssociationTypeElevates riskFactorsAssociationTypeElevates: [Double]) {
+        
+        riskFactorsBarChartView.noDataText = "You need to provide data for the chart."
+        
+        var riskFactorsAssociationTypeIsAnIssueInDataEntries = [BarChartDataEntry]()
+        var riskFactorsAssociationTypeCausesDataEntries = [BarChartDataEntry]()
+        var riskFactorsAssociationTypeReducesDataEntries = [BarChartDataEntry]()
+        var riskFactorsAssociationTypeElevatesDataEntries = [BarChartDataEntry]()
+        var riskFactorsAssociationTypeIsAnIssueInChartDataSet = BarChartDataSet()
+        var riskFactorsAssociationTypeCausesChartDataSet = BarChartDataSet()
+        var riskFactorsAssociationTypeReducesChartDataSet = BarChartDataSet()
+        var riskFactorsAssociationTypeElevatesChartDataSet = BarChartDataSet()
+        var totalDataSets = [BarChartDataSet]()
+        
+        if !riskFactorsAssociationTypeIsAnIssueIn.isEmpty{
+            
+            for i in 0..<riskFactorsAssociationTypeIsAnIssueIn.count {
+                
+                if !(riskFactorsAssociationTypeIsAnIssueIn[i] < 0) {
+                    
+                    let riskFactorsAssociationTypeIsAnIssueInDataEntry = BarChartDataEntry(x: Double(i), yValues: [riskFactorsAssociationTypeIsAnIssueIn[i]])
+                    riskFactorsAssociationTypeIsAnIssueInDataEntries.append(riskFactorsAssociationTypeIsAnIssueInDataEntry)
+                }
+            }
+        }
+        
+        if !riskFactorsAssociationTypeCauses.isEmpty {
+            
+            for i in 0..<riskFactorsAssociationTypeCauses.count {
+                
+                if !(riskFactorsAssociationTypeCauses[i] < 0) {
+                    
+                    //let riskFactorsAssociationTypeCausesDataEntry = BarChartDataEntry(x: Double(i), y: [riskFactorsAssociationTypeCauses[i]])
+                    let riskFactorsAssociationTypeCausesDataEntry = BarChartDataEntry(x: Double(i), yValues: [riskFactorsAssociationTypeCauses[i]])
+                    
+                    riskFactorsAssociationTypeCausesDataEntries.append(riskFactorsAssociationTypeCausesDataEntry)
+                }
+            }
+        }
+        
+        if !riskFactorsAssociationTypeReduces.isEmpty {
+            
+            for i in 0..<riskFactorsAssociationTypeReduces.count {
+                
+                if !(riskFactorsAssociationTypeReduces[i] < 0) {
+                    
+                    //let riskFactorsAssociationTypeReducesDataEntry = BarChartDataEntry(x: Double(i), y: [riskFactorsAssociationTypeReduces[i]])
+                    
+                    let riskFactorsAssociationTypeReducesDataEntry = BarChartDataEntry(x: Double(i), yValues: [riskFactorsAssociationTypeReduces[i]])
+                    riskFactorsAssociationTypeReducesDataEntries.append(riskFactorsAssociationTypeReducesDataEntry)
+                }
+            }
+        }
+        
+        if !riskFactorsAssociationTypeElevates.isEmpty {
+        
+            for i in 0..<riskFactorsAssociationTypeElevates.count {
+                
+                if !(riskFactorsAssociationTypeElevates[i] < 0) {
+                    
+                    //let riskFactorsAssociationTypeElevatesDataEntry = BarChartDataEntry(x: Double(i), y: [riskFactorsAssociationTypeElevates[i]])
+                        
+                        let riskFactorsAssociationTypeElevatesDataEntry = BarChartDataEntry(x: Double(i), yValues: [riskFactorsAssociationTypeElevates[i]])
+                    riskFactorsAssociationTypeElevatesDataEntries.append(riskFactorsAssociationTypeElevatesDataEntry)
+                }
+            }
+        }
+        
+        if !riskFactorsAssociationTypeIsAnIssueInDataEntries.isEmpty {
+            
+            riskFactorsAssociationTypeIsAnIssueInChartDataSet = BarChartDataSet(values: riskFactorsAssociationTypeIsAnIssueInDataEntries, label: "")
+            
+             let riskFactorsAssociationTypeIsAnIssueInColor = UIColor.rgbWithAlphaSetTo1(red: 64, green: 89, blue: 128)
+            riskFactorsAssociationTypeIsAnIssueInChartDataSet.colors = [riskFactorsAssociationTypeIsAnIssueInColor]
+            totalDataSets.append(riskFactorsAssociationTypeIsAnIssueInChartDataSet)
+        }
+        
+        if !riskFactorsAssociationTypeCausesDataEntries.isEmpty {
+            
+            riskFactorsAssociationTypeCausesChartDataSet = BarChartDataSet(values: riskFactorsAssociationTypeCausesDataEntries, label: "")
+            
+            let riskFactorsAssociationTypeCausesColor = UIColor.rgbWithAlphaSetTo1(red: 149, green: 165, blue: 124)
+            riskFactorsAssociationTypeCausesChartDataSet.colors = [riskFactorsAssociationTypeCausesColor]
+            totalDataSets.append(riskFactorsAssociationTypeCausesChartDataSet)
+        }
+        
+        if !riskFactorsAssociationTypeReducesDataEntries.isEmpty {
+            
+            riskFactorsAssociationTypeReducesChartDataSet = BarChartDataSet(values: riskFactorsAssociationTypeReducesDataEntries, label: "")
+            
+            let riskFactorsAssociationTypeReducesColor = UIColor.rgbWithAlphaSetTo1(red: 217, green: 184, blue: 162)
+            riskFactorsAssociationTypeReducesChartDataSet.colors = [riskFactorsAssociationTypeReducesColor]
+            totalDataSets.append(riskFactorsAssociationTypeReducesChartDataSet)
+        }
+        
+        if !riskFactorsAssociationTypeElevatesDataEntries.isEmpty {
+            
+            riskFactorsAssociationTypeElevatesChartDataSet = BarChartDataSet(values: riskFactorsAssociationTypeElevatesDataEntries, label: "")
+           
+             let riskFactorsAssociationTypeElevatesColor = UIColor.rgbWithAlphaSetTo1(red: 179, green: 48, blue: 80)
+            riskFactorsAssociationTypeElevatesChartDataSet.colors = [riskFactorsAssociationTypeElevatesColor]
+            totalDataSets.append(riskFactorsAssociationTypeElevatesChartDataSet)
+        }
+        
+        riskFactorsBarChartView.notifyDataSetChanged()
+        riskFactorsBarChartView.data?.notifyDataChanged()
+        riskFactorsBarChartView.data = BarChartData(dataSets: totalDataSets)
+        
+        riskFactorsBarChartView.rightAxis.enabled = false
+        riskFactorsBarChartView.xAxis.enabled = false
+        riskFactorsBarChartView.xAxis.gridColor = .clear
+        riskFactorsBarChartView.leftAxis.gridColor = .clear
+        riskFactorsBarChartView.rightAxis.gridColor = .clear
     }
     
     
@@ -486,5 +611,46 @@ extension RiskFactorsBarChartController {
         }
         
         return riskFactorsRatioValue
+    }
+    
+    
+    func fillRiskFactorsHasAssociationTypeMatched(forRiskFactorSource riskFactorSource: String) -> [String] {
+        
+        var riskFactorsHasAssociationType = [String]()
+        
+        for arr in riskEvidencesHasRiskFactorAssociationType {
+            
+            if arr[0] == riskFactorSource {
+                
+                riskFactorsHasAssociationType.append(arr[1])
+            }
+        }
+        
+        return riskFactorsHasAssociationType
+    }
+    
+    
+    func decideRiskFactorsColor() {
+        
+        for i in 0..<riskEvidencesHasRiskFactorAssociationTypeMatched.count {
+            
+            switch(riskEvidencesHasRiskFactorAssociationTypeMatched[i]) {
+                
+            case "risk_factor_association_type_is_an_issue_in":
+                riskFactorsAssociationTypeIsAnIssueIn.append(riskEvidencesRatioValueMatched[i])
+                
+            case "risk_factor_association_type_causes":
+                riskFactorsAssociationTypeCauses.append(riskEvidencesRatioValueMatched[i])
+                
+            case "risk_factor_association_type_reduces":
+                riskFactorsAssociationTypeReduces.append(riskEvidencesRatioValueMatched[i])
+                
+            case "risk_factor_association_type_elevates":
+                riskFactorsAssociationTypeElevates.append(riskEvidencesRatioValueMatched[i])
+                
+            default:
+                break
+            }
+        }
     }
 }

@@ -761,6 +761,30 @@ class CarreDatabaseService {
     }
     
     
+    func getRiskEvidencesHasRiskFactorAssociationType() -> [[String]] {
+        
+        var riskEvidencesHasRiskFactorAssociationType = [[String]]()
+        
+        
+        do {
+            
+            for riskEvidencesTableRow in try databaseConnection.prepare(riskEvidencesTable.select(riskEvidenceHasRiskFactorSourceColumn, riskEvidenceHasRiskFactorAssociationTypeColumn)) {
+                    
+                    var helpArr = [String]()
+                    helpArr.append( riskEvidencesTableRow[riskEvidenceHasRiskFactorSourceColumn])
+                    helpArr.append(riskEvidencesTableRow[riskEvidenceHasRiskFactorAssociationTypeColumn])
+                
+                    riskEvidencesHasRiskFactorAssociationType.append(helpArr)
+            }
+        } catch {
+            
+            print(error)
+        }
+        
+        return riskEvidencesHasRiskFactorAssociationType
+    }
+    
+    
     func getPersonalHealthRecordsObservablesAndValues() -> [String] {
         
         var personalHealthRecordsObservablesAndValues = [String]()
@@ -885,5 +909,20 @@ class CarreDatabaseService {
         }
         
         return observablesNameAndMeasurementType
+    }
+    
+    
+    func printRiskEvidencesAssociationType() {
+        
+        do {
+            
+            for riskEvidencesTableRow in try databaseConnection.prepare(riskEvidencesTable.select(riskEvidenceHasRiskFactorAssociationTypeColumn)) {
+                
+                print(riskEvidencesTableRow[riskEvidenceHasRiskFactorAssociationTypeColumn])
+            }
+        } catch {
+            
+            print(error)
+        }
     }
 }
